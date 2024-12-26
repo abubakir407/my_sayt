@@ -8,13 +8,26 @@
     <title>Новостной сайт</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+          <div class="text-end">
+<!--          <button type="button" class="btn btn-primary me-2"><a href="/cart" class="text-white text-decoration-none">Корзина</a></button>-->
+          <button type="button" class="btn btn-primary"><a href="/logout" class="text-white text-decoration-none">Выйти</a></button>
+        </div>
+          {% else %}
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2"><a href="/accounts/login" class="text-white text-decoration-none">Войти</a></button>
+          <button type="button" class="btn btn-warning"><a href="/register" class="text-dark text-decoration-none">Регистрация</a></button>
+        </div>
+          {% endif %}
     <header>
         <h1>Добро пожаловать на наш новостной сайт</h1>
     </header>
     <main>
         <article>
-            <h2>Заголовок статьи</h2>
+            {% for i in news %}
+            <h2>{{ i.title }}</h2>
             <p>Содержимое статьи...</p>
+            {% endfor %}
         </article>
     </main>
     <footer>
